@@ -5,13 +5,15 @@ library(foreach)
 library(doMC)
 library(data.table)
 
-impute_tx_from_23 <- function(genotypes.file.path = "../data/genotypes-scored.tsv", 
+impute_tx_from_23 <- function(genotypes.file.path,
+                              subject.name,
                               output.path = "../data/derivatives/imputed-tx", 
                               model.weights.dir = "../data/modeldata/UTMOST-GTEx-model-weights",
                               tissue="Brain_Anterior_cingulate_cortex_BA24",
                               threads = 4){
   start.time <- Sys.time()
   system(paste0("mkdir -p ", output.path))
+  genotypes.file.path <- paste0("../data/", subject.name, "_genotypes-scored.tsv")
   tissue.extracted.genotypes <- paste0(output.path, "genotypes-for-tissue-", tissue, ".xmat.gz")
   weights.dir <- model.weights.dir
   # pull tissue weights
@@ -99,7 +101,7 @@ impute_tx_from_23 <- function(genotypes.file.path = "../data/genotypes-scored.ts
     colnames(imputed.tx) <- colnames(tissue.weights.all.matrix)
   }
   
-  imputed.tissue.tx.fname <- paste0(output.path, "/imputed-tx-of-", tissue)
+  imputed.tissue.tx.fname <- paste0(output.path, "/",subject.name,"_imputed-tx-of-", tissue)
   write_rds(imputed.tx, file = paste0(imputed.tissue.tx.fname, ".RDS"))
   end.time <- Sys.time()
   time.taken <- end.time - start.time

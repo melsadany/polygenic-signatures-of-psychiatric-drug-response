@@ -1,10 +1,13 @@
 source("https://raw.githubusercontent.com/melsadany/workbench/master/msmuhammad-source.R", local = T)
 
 
-combine_safe_drugs <- function(drug.corr.path="../data/derivatives/drug-recomm/drug-corr-KG-ref_Brain_Anterior_cingulate_cortex_BA24.tsv",
+combine_safe_drugs <- function(drug.corr.path,
+                               tissue="Brain_Anterior_cingulate_cortex_BA24",
                                med.of.interest=c(),
                                ddinteractions.path="../data/modeldata/DDInter/ddi-mtx.tsv",
-                               output.path="../data/derivatives/drug-recomm"){
+                               output.path="../data/derivatives/drug-recomm",
+                               subject.name){
+  drug.corr.path <- paste0("../data/derivatives/drug-recomm/", subject.name, "_drug-corr-KG-ref_", tissue, ".tsv")
   drug.corr <- read_tsv(drug.corr.path) %>%
     mutate(med = tolower(med))
   ddi <- read_tsv(ddinteractions.path) %>%
@@ -63,6 +66,6 @@ combine_safe_drugs <- function(drug.corr.path="../data/derivatives/drug-recomm/d
     safe.recom.combs.cont[,i] <- new.v$final_rec_val %>% as.numeric()
   }
   
-  write_tsv(safe.recom.combs.cont%>%as.data.frame()%>%rownames_to_column("meds"), paste0(output.path, "/safe-recom-meds-combs.tsv"))
+  write_tsv(safe.recom.combs.cont%>%as.data.frame()%>%rownames_to_column("meds"), paste0(output.path, "/", subject.name,"_safe-recom-meds-combs.tsv"))
   
 }

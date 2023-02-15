@@ -5,7 +5,8 @@ library(BSgenome.Hsapiens.UCSC.hg19)
 
 
 prep_23andme_file <- function(file.23.path, 
-                              output.path="../data"){
+                              output.path="../data",
+                              subject.name){
   geno.data <- read_tsv(file.23.path, skip = 19)
   geno.filtered <- geno.data %>%
     filter(!grepl("i", `# rsid`)) %>%
@@ -48,5 +49,5 @@ prep_23andme_file <- function(file.23.path,
     select(c(ID_37,score)) %>%
     dplyr::rename(sample = score)
   
-  write_tsv(genotype.file, paste0(output.path, "/genotypes-scored.tsv"))
+  write_tsv(genotype.file, paste0(output.path, "/", subject.name,"_genotypes-scored.tsv"))
 }

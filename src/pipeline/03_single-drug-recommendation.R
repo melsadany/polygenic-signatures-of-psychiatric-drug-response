@@ -8,9 +8,10 @@ recommend_drug <- function(imputed.tx.dir.path="../data/derivatives/imputed-tx",
                            drugs.metadata="../data/modeldata/LINCS/small_mol_metadata.rds",
                            meds.of.interest=c(),
                            KG.drug.ref.path="../data/modeldata/1KG/1KG-drugs-corr-cmap.rds",
-                           threads=4){
+                           threads=4,
+                           subject.name){
   system(paste0("mkdir -p ", output.path))
-  tissue.tx <- read_rds(paste0(imputed.tx.dir.path, "/imputed-tx-of-", tissue, ".RDS"))
+  tissue.tx <- read_rds(paste0(imputed.tx.dir.path, "/", subject.name, "_imputed-tx-of-", tissue, ".RDS"))
   smol_meta <- read_rds(drugs.metadata) %>%
     mutate(pert_name=tolower(pert_name))
   mdrug <- read_rds(drugs.sig)
@@ -64,15 +65,17 @@ recommend_drug <- function(imputed.tx.dir.path="../data/derivatives/imputed-tx",
     as.data.frame() %>%
     rownames_to_column("med")
 
-  write_rds(drug.corr.ref, paste0(output.path, "/drug-corr-KG-ref_", tissue, ".rds"))
-  write_tsv(drug.corr.ref, paste0(output.path, "/drug-corr-KG-ref_", tissue, ".tsv"))
+  write_rds(drug.corr.ref, paste0(output.path, "/", subject.name, "_drug-corr-KG-ref_", tissue, ".rds"))
+  write_tsv(drug.corr.ref, paste0(output.path, "/", subject.name, "_drug-corr-KG-ref_", tissue, ".tsv"))
 }
 
 
-plot_drug_recomm <- function(tissue.drug.recomm.path="../data/derivatives/drug-recomm/drug-corr-KG-ref_Brain_Anterior_cingulate_cortex_BA24.rds",
+plot_drug_recomm <- function(tissue.drug.recomm.path,
                              drugs.to.plot,
                              output.figs.path="../figs",
-                             tissue="Brain_Anterior_cingulate_cortex_BA24"){
+                             tissue="Brain_Anterior_cingulate_cortex_BA24",
+                             subject.name){
+  tissue.drug.recomm.path <- paste0("../data/derivatives/drug-recomm/", subject.name, "_drug-corr-KG-ref_", tissue,".rds")
   drug.corr <- read_rds(tissue.drug.recomm.path) %>% column_to_rownames("med")
   
   drug.corr.scaled <- scale(drug.corr, scale = T, center = T)
@@ -87,7 +90,7 @@ plot_drug_recomm <- function(tissue.drug.recomm.path="../data/derivatives/drug-r
   if (length(drugs.to.plot)>0) {
     meds <- drugs.to.plot
     data2 <- data[,is.element(colnames(data), meds)]
-    svg(paste0(output.figs.path, "/drug-corr_EUR-1KG-ref_", tissue, ".svg"))
+    svg(paste0(output.figs.path, "/", subject.name,"_drug-corr_EUR-1KG-ref_", tissue, ".svg"))
     radarchart(data2, axistype=1,
                #custom polygon
                pcol=rgb(0.2,0.5,0.5,0.9) , pfcol=rgb(0.2,0.5,0.5,0.5), plwd=1.5, 
@@ -107,7 +110,7 @@ plot_drug_recomm <- function(tissue.drug.recomm.path="../data/derivatives/drug-r
               "methylphenidate", "clonidine", 
               "propofol", "ketamine")
     data2 <- data[,is.element(colnames(data), meds)]
-    svg(paste0(output.figs.path, "/drug-corr_EUR-1KG-ref_", tissue, ".svg"))
+    svg(paste0(output.figs.path, "/", subject.name,"_drug-corr_EUR-1KG-ref_", tissue, ".svg"))
     radarchart(data2, axistype=1,
                #custom polygon
                pcol=rgb(0.2,0.5,0.5,0.9) , pfcol=rgb(0.2,0.5,0.5,0.5), plwd=1.5, 

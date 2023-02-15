@@ -8,8 +8,8 @@ raw.file <- readline(prompt = "Enter the path for your 23andme data: ")
 
 setwd(dirname(rstudioapi::getSourceEditorContext()$path))
 
-prep_23andme_file(file.23.path = raw.file, output.path = "../data")
-impute_tx_from_23(genotypes.file.path = "../data/genotypes-scored.tsv")
-recommend_drug()
-plot_drug_recomm(drugs.to.plot = c("sertraline", "methylphenidate","trazodone", "venlafaxine", "melatonin"))
-combine_safe_drugs(med.of.interest = "sertraline")
+prep_23andme_file(file.23.path = raw.file, output.path = "../data", subject.name = "Muhammad")
+impute_tx_from_23(subject.name = "Muhammad")
+recommend_drug(subject.name = "Muhammad")
+plot_drug_recomm(drugs.to.plot = c("sertraline", "methylphenidate","trazodone", "venlafaxine", "melatonin"), subject.name = "Muhammad")
+combine_safe_drugs(med.of.interest = "sertraline", subject.name = "Muhammad")
