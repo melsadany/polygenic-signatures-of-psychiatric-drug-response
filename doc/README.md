@@ -1,9 +1,11 @@
 ---
 title: "Thesis Proposal"
 author: "Muhammad Elsadany"
+output: pdf_document
 ---
 
 ### **1. Introduction**
+
 
 *Background and Significance*
 
@@ -14,6 +16,7 @@ In particular, there is a critical need for personalized drug recommendations fo
 This research proposal aims to address the critical need for personalized drug recommendations for patients with psychiatric disorders by integrating disparate data sources to develop more comprehensive models of drug response. The proposed research builds on previous studies that have identified genetic and transcriptional signatures associated with psychiatric disorders, as well as studies that have investigated the effects of small molecules on gene expression. By integrating these data sources, we aim to develop a more comprehensive understanding of drug response that takes into account the complex genetic and environmental factors that contribute to inter-individual variability.
 
 The significance of this research lies in its potential to improve patient outcomes by providing personalized drug recommendations that maximize therapeutic effect while minimizing side effects. By developing more comprehensive models of drug response that take into account the complex genetic and environmental factors that contribute to inter-individual variability, we hope to provide clinicians with a powerful tool for optimizing patient care. Ultimately, the proposed research could lead to improved treatment outcomes and a better quality of life for patients with psychiatric disorders.
+
 
 *Research Question*
 
@@ -38,13 +41,29 @@ The objectives of this study are to:
 
 * Develop a new word embedding space that captures the subjective experience of taking psychoactive medication and uses it to improve personalized drug recommendations.
 
+
 *Hypothesis*
 
+This study is based on the following hypotheses:
+
+* Integration of whole-genome genotype information and eQTL data is sufficient enough to predict gene expression in different brain tissue, which could be integrated with transcriptional perturbation assays to predict personalized drug response. 
+
+* Integration of high-resolution brain gene expression data with drug perturbation signatures can efficiently provide a gradient of drug activity in the brain. The drug gradient is hypothesized to be equivalent to anticipated effects in specific brain regions, that could be related to drug side effects.
+
+* Psychoactive medications are more likely to cause different experiences that could not be captured by objective measures. We are hypothesizing that there is a highly similar subjective experiences among patients taking the same drug, and could not be measured through the first two approaches. 
 
 
 ### **2. Literature Review**
 
 *overview of pharmacogenomics and personalized medicine*
+
+Pharmacogenomics, also known as pharmacogenetics, is the branch of science that looks at how a person's genes influence how they react to pharmaceuticals. Its long-term objective is to assist physicians in choosing the medications and dosages that are ideal for every patient. It falls under the category of precision medicine, which tries to treat every patient uniquely. 
+
+Pharmacogenomics, a rapidly developing field in personalized medicine, aims to elucidate how variations in genes can affect a patient's response to drugs. The influence of genes on drug metabolism and efficacy is well-established, as they encode for enzymes and proteins responsible for the breakdown and uptake of medications in the body.
+
+Of particular interest are genes that encode for enzymes involved in drug metabolism, such as CYP2D6, which acts on a quarter of all prescription drugs. Multiple variations of this gene exist, with some individuals having multiple copies of it. These genetic variations can result in differences in enzyme activity, with some variants leading to a hyperactive enzyme that metabolizes drugs at a faster rate than normal. This can result in drug overdose, particularly in the case of codeine, which is metabolized by CYP2D6 to produce its active form, morphine. Conversely, some variants of CYP2D6 produce an enzyme that is non-functional or less active, leading to reduced or absent drug efficacy.
+
+Therefore, understanding the impact of genetic variations on drug response is crucial in ensuring safe and effective drug therapy. Pharmacogenomics provides a valuable tool for predicting drug response based on an individual's genetic makeup, enabling personalized medicine approaches for improved patient outcomes.
 
 
 *prev studies on drug response and pharmacogenomics*
