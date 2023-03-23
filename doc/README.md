@@ -19,9 +19,24 @@ The significance of this research lies in its potential to improve patient outco
 
 This study aims to address the following research questions:
 
+* Can integrating whole-genome genotype information, expression quantitative trait loci (eQTL), and transcriptional perturbation assays improve the accuracy of personalized drug recommendations?
 
-*Objectives of the study*
+* Can the integration of high-resolution brain gene expression data and drug perturbation signatures help identify spatial patterns in susceptibility to small molecules in the brain, and can these patterns be used to further prioritize or de-prioritize drug recommendations based on anticipated effects in specific brain regions?
 
+* Can the development of a new word embedding space capture the subjective experience of taking psychoactive medication, and can it be used to improve personalized drug recommendations?
+
+
+*Objectives of the study* 
+
+*this is redundant with the section above, probably only keep one?*
+
+The objectives of this study are to:
+
+* Integrate whole-genome genotype information, eQTL, GWAS, and transcriptional perturbation assays to recommend drugs on an individual basis that “normalize” disease-associated transcriptional signatures.
+
+* Integrate high-resolution brain gene expression data and trait maps with drug perturbation signatures to identify spatial patterns in susceptibility to small molecules in the brain and use them to further prioritize or de-prioritize drug recommendations based on anticipated effects in specific brain regions.
+
+* Develop a new word embedding space that captures the subjective experience of taking psychoactive medication and uses it to improve personalized drug recommendations.
 
 *Hypothesis*
 
@@ -42,7 +57,7 @@ This study aims to address the following research questions:
 
 
 
-**3. Methods**
+### **3. Methods**
 
 *study design and sample selection*
 
@@ -56,7 +71,7 @@ This study aims to address the following research questions:
 
 
 
-**4. Specific Aims**
+### **4. Specific Aims**
 
 *Aim 1*
 
@@ -68,7 +83,7 @@ This study aims to address the following research questions:
 
 
 
-**5. Expected outcomes and Significance**
+### **5. Expected outcomes and Significance**
 
 *Potential impact of the study on personalized medicine and drug discovery*
 
@@ -80,12 +95,12 @@ This study aims to address the following research questions:
 
 
 
-**6. Timeline**
+### **6. Timeline**
 
 *estimated timeline for data analysis and publication*
 
 
-**7. Conclusion**
+### **7. Conclusion**
 
 *summary of the proposed research and its significance*
 
