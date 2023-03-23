@@ -3,9 +3,10 @@ title: "Thesis Proposal"
 author: "Muhammad Elsadany"
 ---
 
-**1. Introduction**
+### **1. Introduction**
 
 *Background and Significance*
+
 Genetics has been one of the most growing science fields, and yet we still know too little about diseases mechanisms or be able to provide proper treatments. Individual's genetics has been known to be a major player in differentiating response to different pharmacological compounds. The field of pharmacogenomics is rapidly growing, with the aim of providing personalized interventions for patients by uncovering the genetic basis of inter-individual variability in drug response. However, currently available pharmacogenomic services are limited in their ascertainment of genetic variation, with an emphasis on metabolism and known drug targets and mechanisms of action. This approach may result in blind spots relating to off-target effects as well as additional therapeutic mechanisms. A more comprehensive understanding of drug response could provide recommendations that maximize therapeutic effect while minimizing side effects.
 
 In particular, there is a critical need for personalized drug recommendations for patients with psychiatric disorders. These patients often have complex medication regimens and can experience a wide range of responses to treatment, from total remission to life-threatening side effects. By integrating whole-genome genotype information, expression quantitative trait loci (eQTL), Polygenics Scores (PGS) of psychiatric traits, and transcriptional perturbation assays, it may be possible to develop models with reduced bias that can recommend drugs on an individual basis.
@@ -26,7 +27,7 @@ This study aims to address the following research questions:
 
 
 
-**2. Literature Review**
+### **2. Literature Review**
 
 *overview of pharmacogenomics and personalized medicine*
 
