@@ -1,7 +1,9 @@
 ---
 title: "Thesis Proposal"
 author: "Muhammad Elsadany"
-output: pdf_document
+output:
+  pdf_document: default
+  word_document: default
 ---
 
 ### **1. Introduction**
@@ -67,6 +69,32 @@ Therefore, understanding the impact of genetic variations on drug response is cr
 
 
 *prev studies on drug response and pharmacogenomics*
+
+
+* *points to be mentioned*
+
+•	Mental disorders are a major challenge for individuals and society. Conditions such as schizophrenia, major depression, and anxiety disorders require long-term treatment with psychoactive drugs. Although there have been more than two-hundred drugs developed in the last six decades, they still can have variable effects between patients due to differences in drug metabolism and action. Consequently, increasing the dosage of medication does not necessarily lead to better treatment outcomes. 
+
+•	Therapeutic drug monitoring (TDM) has emerged as a promising solution to these challenges, particularly for mood stabilizers, antidepressants, and antipsychotics. TDM has the potential to reduce variability, speed up clinical improvement, and improve drug tolerability and safety.
+
+•	one of the main advantages of the proposed approach is that we are focusing on the entire genome, not only the genes involved in a drug response or metabolism.
+
+•	Early treatment outcomes are frequently poor, with 30–50% of patients failing first-line antidepressant medication due to inefficiency or intolerance, according to estimates [2]. 
+
+•	Moreover, about 25,000 people each year in the United States visit emergency rooms as a result of side effects brought on by antidepressants [3].
+
+•	Before identifying a medication that reduces depressive symptoms with few side effects, patients frequently try with a variety of antidepressant regimens. The psychological and societal costs of repeatedly taking drugs that "do not work" can be distressing for the individual and highlight the need for better drug selection and dosage tactics because antidepressant pharmacotherapy studies frequently take a minimum of 6-8 weeks.
+
+•	The FDA has released comments and warning letters on pharmacogenetic testing in response to concerns over the marketing of these tests. The efficacy of clinical pharmacogenetic testing may not be fully supported by clinical data, according to a safety communication released on November 01, 2018. The statement in this safety communication that "the relationship between DNA variations and the effectiveness of antidepressant medication has never been established" particularly emphasized the use of pharmacogenetic testing to guide antidepressant drug prescribing [4].
+
+•	In keeping with the FDA goal to safeguard and advance the public's health, it's critical to act right away to make sure that the claims being made about the pharmacogenetic tests currently available are supported by reliable research. That can be done by taking measures that safeguard patients while also advancing the creation of analytically and clinically validated pharmacogenetic tests. Recently, the FDA released a new web-based resource that includes a table including some of the pharmacogenetic associations with a last update on October 26, 2022 [5]. Some of these have detailed information regarding therapeutic management, but the majority of the associations listed have not been assessed in terms of the effect of genetic testing on clinical outcomes, such as improved therapeutic effectiveness or increased risk of particular adverse events. This version of the table is restricted to pharmacogenetic associations linked to drug transporter, drug metabolizing enzyme, and gene variations associated with a susceptibility for certain adverse outcomes.
+
+•	pharmacogenomic testing could be done in two forms: single-gene or a multi-panel testing. 
+
+•	Most of the developed pharmacogenetic tests investigate the main drug gene targets, and the advanced ones with a multigene panel look into different genes that include the ones involved in the process of metabolizing the drug. Yet, none of these tests consider a whole-genome approach, which is one of our main focuses in the proposed study. 
+
+•	The FDA now advises against using direct-to-consumer testing for making medical choices, even though there has been considerable debate about the use of pharmacogenomics in clinical practice. However, the FDA allowed the marketing of the 23andMe Personal Genome Service Pharmacogenetic Reports test as a direct-to-consumer test with special controls for informing discussions with a healthcare professional about genetic variants that may be related to a patient's capacity to metabolize some medications [6].
+
 
 
 *gene expression, eQTL, and GWAS related to psychiatric traits*
