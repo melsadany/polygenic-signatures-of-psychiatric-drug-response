@@ -1,0 +1,788 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+
+\author{}
+\date{}
+
+\begin{document}
+
+\textbf{Polygenic signatures of psychiatric drug response{~}}
+
+Patient response to prescription medication is often highly
+unpredictable, ranging from total remission to life-threatening side
+effects. Response to treatment depends on a variety of genetic,
+environmental, and lifestyle factors that are often beyond the view of
+the prescribing physician. Pharmacogenomics is a research field
+dedicated to uncovering the genetic basis of inter-individual
+variability in drug response, with the aim of providing personalized
+interventions. However, currently available pharmacogenomic services are
+too narrow in their ascertainment of genetic variation to make robust
+personalized drug recommendations. There is an emphasis on metabolism
+and known drug targets and mechanisms of action that leads to blind
+spots relating to both off-target effects as well as additional
+therapeutic mechanisms. A more holistic integration of genomic
+information could provide recommendations that maximize therapeutic
+effect while minimizing side effects.{~}
+
+We propose to address this critical barrier in pharmacogenomics by
+integrating whole-genome genotype information, expression quantitative
+trait loci (eQTL), genome-wide association studies (GWAS) of psychiatric
+traits, and transcriptional perturbation assays that use small molecules
+as perturbagens. The triangulation of these disparate data sources will
+allow us to build models with reduced bias, and these models will be
+able to recommend drugs on an individual basis that ``normalize''
+disease-associated transcriptional signatures. We will also develop new
+tools, in the form of a new word embedding space, that capture the
+subjective experience of taking psychoactive medication.{~}
+
+With my strong data analysis and programming background, and under the
+mentorship of experienced computational biologist Dr. Jacob Michaelson,
+I am well-positioned to carry out the proposed research on polygenic
+predictors of drug response.{~}
+
+Our proposed approach will integrate genetic, brain gene expression,
+behavioral, and subjective data to provide a more comprehensive
+understanding of drug response and improve personalized drug
+recommendations. We propose to accomplish this overall goal through the
+following specific aims:{~}
+
+\textbf{Aim 1:} To enable \textbf{personalized drug recommendation}, we
+will integrate individual-level genotype data with polygenic scores and
+drug perturbation signatures. We will recommend drugs based on their
+tendency to ``normalize'' the disease-associated components of an
+individual's imputed (using genotype and eQTL) gene expression
+signature. The recommendation will be based on a consensus of 1)
+normalizing the individual's gene expression signature while also 2)
+normalizing the overall gene expression signature associated with the
+psychiatric trait of interest.{~}
+
+\textbf{Aim 2:} To \textbf{identify spatial patterns in susceptibility}
+to small molecules in the brain, we will integrate high-resolution brain
+gene expression data and trait maps with drug perturbation signatures.
+The proposed brain susceptibility map will link specific compounds to
+their anticipated phenotypic effects based on publicly available
+meta-analytic brain-trait maps. The map will be used to further
+prioritize (or de-prioritize) drug recommendations based on anticipated
+effects in specific brain regions.{~}
+
+\textbf{Aim 3:} To systematically \textbf{characterize the subjective
+experience} of taking specific psychoactive compounds, we will develop a
+word embedding space derived from first-person accounts of experience
+with selected drugs. The proposed approach will identify recurrent
+patterns and trends in drug-induced effects on the mind, which can be
+difficult to estimate using objective measures alone.{~}
+
+Together, the successful achievement of these independent aims will
+provide new tools to better personalize drug recommendation and
+prescription. Our preliminary data suggest that individual genotype is a
+powerful tool in this effort and can provide promising results for drug
+recommendation.{~}
+
+Table of Contents
+
+1. Introduction{ }4
+
+1.1. Background and Significance{ }4
+
+1.2. Research Question{ }5
+
+Objectives of the study{ }5
+
+1.3. Hypothesis{ }5
+
+2. Literature Review{ }6
+
+2.1. overview of pharmacogenomics and personalized medicine{ }6
+
+2.2. Gene expression, eQTL, and GWAS related to psychiatric disorders:{
+}7
+
+2.3. Drug repositioning{ }9
+
+2.4. Psychoactive compounds and subjective experience{ }11
+
+3. Aims Overview/Methods{ }12
+
+3.1. Aim 1:{ }12
+
+3.1.1. eQTL weights and transcriptome imputation{ }13
+
+3.1.2. Chemical perturbagens signature and drug response{ }13
+
+Aim 2:{ }13
+
+Aim 3:{ }13
+
+Proposal Timeline{ }13
+
+\textbf{}~\\
+
+1. Introduction
+
+1.1. Background and Significance
+
+Genetics has been one of the most growing science fields, and yet we
+still know too little about diseases mechanisms or be able to provide
+proper treatments. Individual's genetics has been known to be a major
+player in differentiating response to different pharmacological
+compounds. The field of pharmacogenomics is rapidly growing, with the
+aim of providing personalized interventions for patients by uncovering
+the genetic basis of inter-individual variability in drug response.
+However, currently available pharmacogenomic services are limited in
+their ascertainment of genetic variation, with an emphasis on metabolism
+and known drug targets and mechanisms of action. This approach may
+result in blind spots relating to off-target effects as well as
+additional therapeutic mechanisms. A more comprehensive understanding of
+drug response could provide recommendations that maximize therapeutic
+effect while minimizing side effects.
+
+Mental disorders are a major challenge for individuals and society.
+Conditions such as schizophrenia, major depression, and anxiety
+disorders require long-term treatment with psychoactive drugs. Although
+there have been more than two-hundred drugs developed in the last six
+decades, they still can have variable effects between patients due to
+differences in drug metabolism and action. Consequently, increasing the
+dosage of medication does not necessarily lead to better treatment
+outcomes. Early treatment outcomes are frequently poor, with 30--50\% of
+patients failing first-line antidepressant medication due to
+inefficiency or intolerance, according to estimates (Barak et al.,
+2011). Moreover, about 25,000 people each year in the United States
+visit emergency rooms as a result of side effects brought on by
+antidepressants (Hampton et al., 2014). Before identifying a medication
+that reduces depressive symptoms with few side effects, patients
+frequently try with a variety of antidepressant regimens. The
+psychological and societal costs of repeatedly taking drugs that "do not
+work" can be distressing for the individual and highlight the need for
+better drug selection and dosage tactics because antidepressant
+pharmacotherapy studies frequently take a minimum of 6-8 weeks.
+
+In particular, there is a critical need for personalized drug
+recommendations for patients with psychiatric disorders. These patients
+often have complex medication regimens and can experience a wide range
+of responses to treatment, from total remission to life-threatening side
+effects. By integrating whole-genome genotype information, expression
+quantitative trait loci (eQTL), Polygenics Scores (PGS) of psychiatric
+traits, and transcriptional perturbation assays, it may be possible to
+develop models with reduced bias that can recommend drugs on an
+individual basis.
+
+This research proposal aims to address the critical need for
+personalized drug recommendations for patients with psychiatric
+disorders by integrating disparate data sources to develop more
+comprehensive models of drug response. The proposed research builds on
+previous studies that have identified genetic and transcriptional
+signatures associated with psychiatric disorders, as well as studies
+that have investigated the effects of small molecules on gene
+expression. By integrating these data sources, we aim to develop a more
+comprehensive understanding of drug response that takes into account the
+complex genetic and environmental factors that contribute to
+inter-individual variability.
+
+The significance of this research lies in its potential to improve
+patient outcomes by providing personalized drug recommendations that
+maximize therapeutic effect while minimizing side effects. By developing
+more comprehensive models of drug response that consider the complex
+genetic and environmental factors that contribute to inter-individual
+variability, we hope to provide clinicians with a powerful tool for
+optimizing patient care. Ultimately, the proposed research could lead to
+improved treatment outcomes and a better quality of life for patients
+with psychiatric disorders.
+
+1.2. Research Question
+
+This study aims to address the following research questions:
+
+\begin{itemize}
+\tightlist
+\item
+  Can integrating whole-genome genotype information, expression
+  quantitative trait loci (eQTL), and transcriptional perturbation
+  assays improve the accuracy of personalized drug recommendations?
+\item
+  Can the integration of high-resolution brain gene expression data and
+  drug perturbation signatures help identify spatial patterns in
+  susceptibility to small molecules in the brain, and can these patterns
+  be used to further prioritize or de-prioritize drug recommendations
+  based on anticipated effects in specific brain regions?
+\item
+  Can the development of a new word embedding space capture the
+  subjective experience of taking psychoactive medication, and can it be
+  used to improve personalized drug recommendations?
+\end{itemize}
+
+Objectives of the study
+
+\emph{this is redundant with the section above, probably only keep one?}
+
+The objectives of this study are to:
+
+\begin{itemize}
+\tightlist
+\item
+  Integrate whole-genome genotype information, eQTL, GWAS, and
+  transcriptional perturbation assays to recommend drugs on an
+  individual basis that ``normalize'' disease-associated transcriptional
+  signatures.
+\item
+  Integrate high-resolution brain gene expression data and trait maps
+  with drug perturbation signatures to identify spatial patterns in
+  susceptibility to small molecules in the brain and use them to further
+  prioritize or de-prioritize drug recommendations based on anticipated
+  effects in specific brain regions.
+\item
+  Develop a new word embedding space that captures the subjective
+  experience of taking psychoactive medication and uses it to improve
+  personalized drug recommendations.
+\end{itemize}
+
+1.3. Hypothesis
+
+This study is based on the following hypotheses:
+
+\begin{itemize}
+\tightlist
+\item
+  Integration of whole-genome genotype information and eQTL data is
+  sufficient enough to predict gene expression in different brain
+  tissue, which could be integrated with transcriptional perturbation
+  assays to predict personalized drug response.
+\item
+  Integration of high-resolution brain gene expression data with drug
+  perturbation signatures can efficiently provide a gradient of drug
+  activity in the brain. The drug gradient is hypothesized to be
+  equivalent to anticipated effects in specific brain regions, that
+  could be related to drug side effects.
+\item
+  Psychoactive medications are more likely to cause different
+  experiences that could not be captured by objective measures. We are
+  hypothesizing that there is a highly similar subjective experiences
+  among patients taking the same drug and could not be measured through
+  the first two approaches.
+\end{itemize}
+
+2. Literature Review
+
+2.1. overview of pharmacogenomics and personalized medicine
+
+Pharmacogenomics, also known as pharmacogenetics, is the branch of
+science that looks at how a person's genes influence how they react to
+pharmaceuticals. Its long-term objective is to assist physicians in
+choosing the medications and dosages that are ideal for every patient.
+It falls under the category of precision medicine, which tries to treat
+every patient uniquely.
+
+Pharmacogenomics, a rapidly developing field in personalized medicine,
+aims to elucidate how variations in genes can affect a patient's
+response to drugs. The influence of genes on drug metabolism and
+efficacy is well-established, as they encode for enzymes and proteins
+responsible for the breakdown and uptake of medications in the body.
+
+Of particular interest are genes that encode for enzymes involved in
+drug metabolism, such as CYP2D6, which acts on a quarter of all
+prescription drugs. Multiple variations of this gene exist, with some
+individuals having multiple copies of it. These genetic variations can
+result in differences in enzyme activity, with some variants leading to
+a hyperactive enzyme that metabolizes drugs at a faster rate than normal
+(Ingelman-Sundberg, 2005). This can result in drug overdose,
+particularly in the case of codeine, which is metabolized by CYP2D6 to
+produce its active form, morphine. Conversely, some variants of CYP2D6
+produce an enzyme that is non-functional or less active, leading to
+reduced or absent drug efficacy.
+
+Therefore, understanding the impact of genetic variations on drug
+response is crucial in ensuring safe and effective drug therapy.
+Pharmacogenomics provides a valuable tool for predicting drug response
+based on an individual's genetic makeup, enabling personalized medicine
+approaches for improved patient outcomes.
+
+The FDA has released comments and warning letters on pharmacogenetic
+testing in response to concerns over the marketing of these tests. The
+efficacy of clinical pharmacogenetic testing may not be fully supported
+by clinical data, according to a safety communication released on
+November 01, 2018. The statement in this safety communication that "the
+relationship between DNA variations and the effectiveness of
+antidepressant medication has never been established" particularly
+emphasized the use of pharmacogenetic testing to guide antidepressant
+drug prescribing (Shuren, 2018). In keeping with the FDA goal to
+safeguard and advance the public's health, it's critical to act right
+away to make sure that the claims being made about the pharmacogenetic
+tests currently available are supported by reliable research. That can
+be done by taking measures that safeguard patients while also advancing
+the creation of analytically and clinically validated pharmacogenetic
+tests. Recently, the FDA released a new web-based resource that includes
+a table including some of the pharmacogenetic associations with a last
+update on October 26, 2022 (FDA, 2022). Some of these have detailed
+information regarding therapeutic management, but the majority of the
+associations listed have not been assessed in terms of the effect of
+genetic testing on clinical outcomes, such as improved therapeutic
+effectiveness or increased risk of particular adverse events. This
+version of the table is restricted to pharmacogenetic associations
+linked to drug transporter, drug metabolizing enzyme, and gene
+variations associated with a susceptibility for certain adverse
+outcomes.
+
+Pharmacogenomic testing could be done in two forms: single-gene or a
+multi-panel testing. Most of the developed pharmacogenetic tests
+investigate the main drug gene targets, and the advanced ones with a
+multigene panel investigate different genes that include the ones
+involved in the process of metabolizing the drug. Yet, none of these
+tests consider a whole-genome approach, which is one of our main focuses
+in the proposed study. one of the main advantages of the proposed
+approach is that we are focusing on the entire genome, not only the
+genes involved in a drug response or metabolism. The FDA now advises
+against using direct-to-consumer testing for making medical choices,
+even though there has been considerable debate about the use of
+pharmacogenomics in clinical practice. However, the FDA allowed the
+marketing of the 23andMe Personal Genome Service Pharmacogenetic Reports
+test as a direct-to-consumer test with special controls for informing
+discussions with a healthcare professional about genetic variants that
+may be related to a patient's capacity to metabolize some medications
+(FDA, 2018).
+
+2.2. Gene expression, eQTL, and GWAS related to psychiatric disorders:
+
+In recent years, a new area of research has emerged: the investigation
+of the genetic basis of psychiatric traits. The use of eQTLs, GWAS, and
+gene expression data is one strategy that has gained interest in this
+field. Genomic regions known as eQTLs are linked to variations in gene
+expression levels. Finding eQTLs allows researchers to uncover genetic
+variations that may have an effect on the transcriptome functionally,
+perhaps shedding light on the molecular processes behind mental
+illnesses. For instance, eQTLs for numerous genes, including ITIH4,
+GLT8D1, GNL3, and NEK4, were discovered to be enriched in
+schizophrenia-related genetic regions (Kim et al., 2014). This shows
+that these genes could be involved in the disorder's genesis. eQTLs were
+also studied for their effects in the developing human brain and their
+enrichment in neuropsychiatric disorders (Bryois et al., 2022; O'Brien
+et al., 2018).
+
+The use of GWAS to investigate the genetic foundation of psychiatric
+characteristics has also become widespread. In these studies, the
+complete genome is examined in sizable patient cohorts and healthy
+controls, revealing genetic variations linked to certain disorders. For
+instance, a recent meta-analysis of three major genome-wide association
+study (GWAS) of major depressive disorder (MDD) discovered 102
+independent variants, 15 gene-sets, and 269 genes to be linked to the
+condition, many of which are involved in synaptic neurotransmission and
+synaptic structure (Howard et al., 2019). The functional implications of
+these polymorphisms are not revealed by GWAS, even though they serve as
+a useful starting point for the identification of genetic risk factors.
+The value of these association analysis techniques is increased when
+evidence of biological pathway enrichment is combined with data on
+features associated with the trait being studied. This allows for
+further conclusions regarding similar aetiological processes.
+
+The analysis of different genome variants in the context of their effect
+on gene has spawned a big field in genetics named as expression
+quantitative trait loci (eQTLs). An eQTL is a locus that explains a
+portion of a gene expression phenotype's genetic variation. In a
+standard eQTL experiment, gene expression levels are often assessed in
+tens or hundreds of people and genetic variation markers are directly
+tested for associations. This association study can be performed close
+to the gene (cis) or far (trans) from it. The \emph{cis}-eQTLs
+variations are those that are within 1 Mb (megabase) on either side of a
+gene's transcription start site (TSS). On the other hand,
+\emph{trans}-eQTLs are those that are at least 5 Mb upstream,
+downstream, or on a separate chromosome. The same regulatory region or
+variant can be identified as an eQTL for different genes in different
+tissues, suggesting that tissue specificity is a highly important factor
+to be considered in such analyses. {~}
+
+\hfill\break
+
+Figure 1 (A) shows a schematic representation of the effect of an eQTL
+on gene expression. Boxplots in (B) show correlation between genotype
+variants and gene expression in different populations. The width of a
+boxplot is proportional to the allele frequency.
+
+2.3. Drug repositioning{~}
+
+Drug repurposing initiatives may benefit from the application of GWAS
+and eQTL analyses. eQTL analysis can show the functional impact of these
+variations on gene expression, and GWAS can find genetic variants linked
+to a specific disease or health issue. Researchers can find medications
+that may be beneficial for treating diseases other than their intended
+targets by merging these datasets with drug databases.{~}
+
+A recent article reviewed different methods for drug repurposing that
+included 5 main approaches utilizing different types of datasets, shown
+in Figure 1 (Lau \& So, 2020).{~ }In the first approach ``candidate gene
+approach'', which uses functional annotations and eQTL data, the risk
+loci from GWAS data may be mapped to the genes that are most likely to
+be important. Drugs may be used as repositioning candidates if the
+discovered candidate gene is druggable and the medication is not
+currently prescribed for the condition. Another approach, called
+``pathway or gene-set analysis approach'', states that drugs that target
+members of the same pathway are prospective drug candidates. The
+pathways that the selected candidate gene(s) are situated in are next
+examined. In addition, enrichment tests may be used to find medications
+whose targets or effector genes obtain higher significance (lower
+p-values) than anticipated overall. The whole collection of GWAS data
+may also be utilized to produce gene-based statistics. The third
+approach is mainly focusing on comparing similarities between drugs and
+diseases (dx). In that approach, if two medications' indications are
+sufficiently similar to one another, they can be relocated. For
+instance, utilizing cell-line expression data from the Connectivity Map
+(CMap), one may assess the similarities between the transcriptomes of
+two medications. According to this, if two diseases are similar, then
+the medications used to treat one condition may be used to treat the
+other. The fourth approach is considered by looking for reversed
+expression patterns between drugs and diseases. The key premise is that
+a medication may be a candidate for repositioning if it results in an
+expression profile that is the opposite of that of a disease (owing to
+its ability to "reverse" expression patterns linked to diseases). The
+fifth, and last approach, is a network-based analysis approach. The
+method is based on building biological networks by integrating data from
+several sources, including interactions between drugs, proteins, genes,
+and diseases. The idea behind this approach is similar to that of
+"similarity-based" methods for medication repositioning, however
+network-based approaches often use a wider range of data.
+
+\hfill\break
+
+Figure 2: A schematic diagram of drug repurposing approaches using
+different types of datasets reviewed by (Lau \& So, 2020).
+
+2.4. Psychoactive compounds and subjective experience
+
+Psychoactive compounds are those that work on the central nervous system
+that impact a person's perception, behavior, and mood. Although
+psychoactive substances have been used for ages for religious,
+therapeutic, and recreational purposes, their usage can also have
+unfavorable effects including addiction, psychosis, and other
+psychological issues. Understanding the subjective experience of
+consuming psychoactive substances is crucial for producing safer and
+more potent psychoactive substances as well as for improving the
+treatment results for psychiatric disorders. The effects of psychoactive
+substances on the brain and body have been investigated using unbiased
+techniques including physiological monitoring and brain imaging. These
+metrics, meanwhile, fall short of properly capturing the user's
+subjective experience. This is due to the fact that the subjective
+experience of ingesting psychoactive substances is a complicated
+phenomenon with many facets that includes a variety of cognitive,
+emotional, and perceptual processes. As a result, to fully comprehend
+the subjective experience of ingesting psychoactive substances, it is
+necessary to employ additional techniques that can adequately capture
+the subtleties of the effects that drugs have on the brain.
+
+The study of first-person narratives of drug experiences is a potential
+strategy for comprehending the subjective experience of taking
+psychoactive substances. We can better grasp the variety of effects that
+these substances can have as well as the variations in responses across
+individuals by examining first-person accounts. It can be difficult to
+analyze unstructured data, such as first-person experiences, thus it's
+critical to create effective strategies for drawing out useful
+information from these experiences. Word embedding techniques have been
+utilized more often recently to analyze unstructured text data and
+uncover significant trends. A form of natural language processing (NLP)
+method known as word embeddings may represent words as high-dimensional
+vectors that capture their semantic and contextual links. A word
+embedding space on first-person reports of drug experiences can be
+developed to represents the subjective experience of taking certain
+psychoactive substances. This method can uncover recurring patterns and
+trends in the mental side effects of drugs, which can offer insightful
+information on the subjective experience of taking psychoactive
+substances. By doing this, we want to improve our comprehension of the
+intricate and varied phenomena known as the subjective experience of
+taking psychoactive substances.
+
+3. Aims Overview/Methods
+
+3.1. Aim 1:{~}
+
+We propose to address the critical barrier in pharmacogenomics by
+integrating tissue-specific gene expression data and transcriptional
+perturbation assays that use small molecules as perturbagens. The
+combination of these data sources will allow us to build a model with
+reduced bias, which will be able to recommend drugs on an individual
+basis that "normalize" disease-associated transcriptional signatures.
+For example, if a person is diagnosed with depression and depression
+caused elevation of gene X expression, the best drug to be working well
+with this patient is the one that can neutralize the disease effect on
+gene expression and bring it back to normal level. Our overall objective
+in this work is to maximize efficacy of drugs on an individual level,
+while reducing the negative side effects.
+
+3.1.1. eQTL weights and transcriptome imputation
+
+To identify how different variants on the genome affect gene expression
+by tissue, the eQTL data from the Genotype-Tissue Expression (GTEx)
+project will be used to give weights for every variant by gene. The
+weights are mainly derived from a linear regression model that fits a
+gene expression in a specific tissue by the known cis variants, close by
+a 1 Mb distance from the TSS. The linear regression model comes in the
+form of:{~}
+
+{~}(1)
+
+where B1:Bn are the effect sizes that each SNP X has on that gene, and n
+is the total number of cis-eQTLs of the given gene. By the end of this
+step, we will have a weights matrix of MxN for every single tissue,
+where N is the number of genes, and M is the number of SNPs known to
+have weights for any gene in that tissue. If the SNP is not affecting
+the gene's expression, the value will be 0. Otherwise, it will have the
+weight derived from the linear model.{~}
+
+The step of identifying the effect sizes of \emph{cis}-eQTLs per gene in
+every tissue from GTEx was done different groups of researchers with
+different approaches (Chen et al., 2023; de Klein et al., 2023; Gamazon
+et al., 2015; Hu et al., 2019; Liu \& Kang, 2022). The model weights
+from (Hu et al., 2019) will be used for transcriptome imputation in this
+project.{~}
+
+To impute individuals' gene expression in different tissues, a simple
+matrix multiplication will be done following this formula:{~}
+
+{~}(2)
+
+The \emph{Tissue\_Weights\_Matrix} represents the weights matrix, MxN,
+derived from equation (1). On the other hand, the
+\emph{Genotypes\_Matrix} has rows as individuals, and columns as
+genotypes. The values in this matrix represent the genotype alleles type
+found per individuals (i.e., 0 if both alleles are homozygous reference,
+1 if both alleles are heterozygous, and 2 if both alleles are homozygous
+alternative). The \emph{Genotypes\_Matrix} used in this project is for
+participants from the Adolescent Brain Cognitive Development (ABCD)
+study. The ABCD study is one of the largest long-term NIH-funded study
+of the brain development and child health in the United States. The
+study includes \textasciitilde11,000 children of ages 9-10 years. The
+study tracks their biological and behavioral development through
+adolescence into young adulthood.{~}
+
+3.1.2. Chemical perturbagens signature and drug response
+
+\hfill\break
+
+Aim 2:
+
+\hfill\break
+
+Aim 3:
+
+\hfill\break
+
+Proposal Timeline
+
+{~}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 16\tabcolsep) * \real{0.11}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 16\tabcolsep) * \real{0.11}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 16\tabcolsep) * \real{0.11}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 16\tabcolsep) * \real{0.11}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 16\tabcolsep) * \real{0.11}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 16\tabcolsep) * \real{0.11}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 16\tabcolsep) * \real{0.11}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 16\tabcolsep) * \real{0.11}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 16\tabcolsep) * \real{0.11}}@{}}
+\toprule
+\endhead
+Aim & Task & 2022 & 2023 & 2024 & 2025 & & & \\
+1 & get weights of eQTLs & & & & & & & \\
+& impute gene expression for samples & & & & & & & \\
+& predict individuals' drug response & & & & & & & \\
+& validate results using CBCL & & & & & & & \\
+2 & build a model for predicting gene expression & & & & & & & \\
+& compute drug activity in brain regions & & & & & & & \\
+& correlate drug activity with brain functionality from neurosynth & & &
+& & & & \\
+& apply same model on mouse brain and validate & & & & & & & \\
+3 & download and preprocess text data of users of interest & & & & & &
+& \\
+& build a word embedding space for experience reports & & & & & & & \\
+& validate results and reflect on aim 2 brain maps & & & & & & & \\
+\bottomrule
+\end{longtable}
+
+\hfill\break
+
+\hfill\break
+
+\hfill\break
+
+\hfill\break
+
+\hfill\break
+
+\emph{points to be mentioned:}{~}
+
+\begin{itemize}
+\tightlist
+\item
+  {Therapeutic drug monitoring (TDM) has emerged as a promising solution
+  to these challenges, particularly for mood stabilizers,
+  antidepressants, and antipsychotics. TDM has the potential to reduce
+  variability, speed up clinical improvement, and improve drug
+  tolerability and safety.}{~}
+\item
+  Link the third aim to the first two aims
+\item
+  Make a graphical abstract
+\item
+\end{itemize}
+
+References
+
+\hfill\break
+
+Barak, Y., Swartz, M., \& Baruch, Y. (2011). Venlafaxine or a second
+SSRI: Switching after treatment failure with an SSRI among depressed
+inpatients: a retrospective analysis. \emph{Prog Neuropsychopharmacol
+Biol Psychiatry}, \emph{35}(7), 1744-1747.
+https://doi.org/10.1016/j.pnpbp.2011.06.007{~}
+
+Bryois, J., Calini, D., Macnair, W., Foo, L., Urich, E., Ortmann, W.,
+Iglesias, V. A., Selvaraj, S., Nutma, E., Marzin, M., Amor, S.,
+Williams, A., Castelo-Branco, G., Menon, V., De Jager, P., \& Malhotra,
+D. (2022). Cell-type-specific cis-eQTLs in eight human brain cell types
+identify novel risk genes for psychiatric and neurological disorders.
+\emph{Nat Neurosci}, \emph{25}(8), 1104-1112.
+https://doi.org/10.1038/s41593-022-01128-z{~}
+
+Chen, F., Wang, X., Jang, S. K., Quach, B. C., Weissenkampen, J. D.,
+Khunsriraksakul, C., Yang, L., Sauteraud, R., Albert, C. M., Allred, N.
+D. D., Arnett, D. K., Ashley-Koch, A. E., Barnes, K. C., Barr, R. G.,
+Becker, D. M., Bielak, L. F., Bis, J. C., Blangero, J., Boorgula, M. P.,
+. . . Liu, D. J. (2023). Multi-ancestry transcriptome-wide association
+analyses yield insights into tobacco use biology and drug repurposing.
+\emph{Nat Genet}, \emph{55}(2), 291-300.
+https://doi.org/10.1038/s41588-022-01282-x{~}
+
+de Klein, N., Tsai, E. A., Vochteloo, M., Baird, D., Huang, Y., Chen, C.
+Y., van Dam, S., Oelen, R., Deelen, P., Bakker, O. B., El Garwany, O.,
+Ouyang, Z., Marshall, E. E., Zavodszky, M. I., van Rheenen, W., Bakker,
+M. K., Veldink, J., Gaunt, T. R., Runz, H., . . . Westra, H. J. (2023).
+Brain expression quantitative trait locus and network analyses reveal
+downstream effects and putative drivers for brain-related diseases.
+\emph{Nat Genet}, \emph{55}(3), 377-388.
+https://doi.org/10.1038/s41588-023-01300-6{~}
+
+FDA. (2018, October 31). \emph{FDA authorizes first direct-to-consumer
+test for detecting genetic variants that may be associated with
+medication metabolism}
+https://www.fda.gov/news-events/press-announcements/fda-authorizes-first-direct-consumer-test-detecting-genetic-variants-may-be-associated-medication
+
+FDA. (2022). Table of Pharmacogenetic Associations. In.
+
+Gamazon, E. R., Wheeler, H. E., Shah, K. P., Mozaffari, S. V.,
+Aquino-Michaels, K., Carroll, R. J., Eyler, A. E., Denny, J. C.,
+Consortium, G. T., Nicolae, D. L., Cox, N. J., \& Im, H. K. (2015). A
+gene-based association method for mapping traits using reference
+transcriptome data. \emph{Nat Genet}, \emph{47}(9), 1091-1098.
+https://doi.org/10.1038/ng.3367{~}
+
+Hampton, L. M., Daubresse, M., Chang, H. Y., Alexander, G. C., \&
+Budnitz, D. S. (2014). Emergency department visits by adults for
+psychiatric medication adverse events. \emph{JAMA Psychiatry},
+\emph{71}(9), 1006-1014.
+https://doi.org/10.1001/jamapsychiatry.2014.436{~}
+
+Howard, D. M., Adams, M. J., Clarke, T. K., Hafferty, J. D., Gibson, J.,
+Shirali, M., Coleman, J. R. I., Hagenaars, S. P., Ward, J., Wigmore, E.
+M., Alloza, C., Shen, X., Barbu, M. C., Xu, E. Y., Whalley, H. C.,
+Marioni, R. E., Porteous, D. J., Davies, G., Deary, I. J., . . .
+McIntosh, A. M. (2019). Genome-wide meta-analysis of depression
+identifies 102 independent variants and highlights the importance of the
+prefrontal brain regions. \emph{Nat Neurosci}, \emph{22}(3), 343-352.
+https://doi.org/10.1038/s41593-018-0326-7{~}
+
+Hu, Y., Li, M., Lu, Q., Weng, H., Wang, J., Zekavat, S. M., Yu, Z., Li,
+B., Gu, J., Muchnik, S., Shi, Y., Kunkle, B. W., Mukherjee, S.,
+Natarajan, P., Naj, A., Kuzma, A., Zhao, Y., Crane, P. K., Alzheimer's
+Disease Genetics, C., . . . Zhao, H. (2019). A statistical framework for
+cross-tissue transcriptome-wide association analysis. \emph{Nat Genet},
+\emph{51}(3), 568-576. https://doi.org/10.1038/s41588-019-0345-7{~}
+
+Ingelman-Sundberg, M. (2005). Genetic polymorphisms of cytochrome P450
+2D6 (CYP2D6): clinical consequences, evolutionary aspects and functional
+diversity. \emph{Pharmacogenomics J}, \emph{5}(1), 6-13.
+https://doi.org/10.1038/sj.tpj.6500285{~}
+
+Kim, Y., Xia, K., Tao, R., Giusti-Rodriguez, P., Vladimirov, V., van den
+Oord, E., \& Sullivan, P. F. (2014). A meta-analysis of gene expression
+quantitative trait loci in brain. \emph{Transl Psychiatry},
+\emph{4}(10), e459. https://doi.org/10.1038/tp.2014.96{~}
+
+Lau, A., \& So, H. C. (2020). Turning genome-wide association study
+findings into opportunities for drug repositioning. \emph{Comput Struct
+Biotechnol J}, \emph{18}, 1639-1650.
+https://doi.org/10.1016/j.csbj.2020.06.015{~}
+
+Liu, A. E., \& Kang, H. M. (2022). Meta-imputation of transcriptome from
+genotypes across multiple datasets by leveraging publicly available
+summary-level data. \emph{PLoS Genet}, \emph{18}(1), e1009571.
+https://doi.org/10.1371/journal.pgen.1009571{~}
+
+O'Brien, H. E., Hannon, E., Hill, M. J., Toste, C. C., Robertson, M. J.,
+Morgan, J. E., McLaughlin, G., Lewis, C. M., Schalkwyk, L. C., Hall, L.
+S., Pardinas, A. F., Owen, M. J., O'Donovan, M. C., Mill, J., \& Bray,
+N. J. (2018). Expression quantitative trait loci in the developing human
+brain and their enrichment in neuropsychiatric disorders. \emph{Genome
+Biol}, \emph{19}(1), 194. https://doi.org/10.1186/s13059-018-1567-1{~}
+
+Shuren, J. (2018). \emph{Jeffrey Shuren, M.D., J.D., director of the
+FDA's Center for Devices and Radiological Health and Janet Woodcock,
+M.D., director of the FDA's Center for Drug Evaluation and Research on
+agency's warning to consumers about genetic tests that claim to predict
+patients' responses to specific medications}. Retrieved March 27 from
+https://www.fda.gov/news-events/press-announcements/jeffrey-shuren-md-jd-director-fdas-center-devices-and-radiological-health-and-janet-woodcock-md
+
+\hfill\break
+
+\end{document}
