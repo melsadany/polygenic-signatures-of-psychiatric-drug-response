@@ -16,7 +16,7 @@ library(data.table, lib.loc = "/Dedicated/jmichaelson-wdata/msmuhammad/workbench
 ############################ tx imputation section #############################
 ################################################################################
 tissue <- "Brain_Frontal_Cortex_BA9"
-impute.tx <- function(genotypes, weights) {
+impute.tx <- function(genotypes, weights, threads) {
   # the genotypes matrix is expected to have participants as rownames and genotypes as colnames
   # the weights matrix is expected to have 3 columns: variant, gene, weight
   ge <- intersect(colnames(genotypes), weights$variant)
@@ -33,7 +33,7 @@ impute.tx <- function(genotypes, weights) {
   filt.weights <- weights %>%
     filter(variant %in% ge)
   gc()
-  registerDoMC(cores = 6)
+  registerDoMC(cores = threads)
 
   imputed <- foreach(j=1:length(unique(filt.weights$gene)), .combine = cbind) %dopar% {
     # j=1
@@ -70,7 +70,7 @@ jaccard.index <- function(subject, drug) {
   colnames(df2)[1] <- colnames(drug)[2]
   return(df2)
 }
-predict.response <- function(samples.tx, drug.sig, approach = 1, threads=2, set) {
+predict.response <- function(samples.tx, drug.sig, approach = 1, threads=6, set) {
   # assume a samples.tx is dataframe with genes as rownames
   # assume a drug.sig is a datframe with genes as rownames
   if (approach == 1) {
@@ -123,7 +123,7 @@ Go.BP <- function(from, genes_set, correct, cores, scale, method, genotypes_path
   ### choose
   if (from == "tissue") {
     tissue <- "Brain_Frontal_Cortex_BA9"
-    genotypes <- fread(file = genotypes_path, header = T, nThread = 4)
+    genotypes <- fread(file = genotypes_path, header = T, nThread = cores)
     genotypes <- genotypes[-1,-1]
     gc()
     print(paste0("Done with: ", "reading genotypes file for tissue"))
@@ -135,7 +135,7 @@ Go.BP <- function(from, genes_set, correct, cores, scale, method, genotypes_path
     gc()
     print(paste0("Done with: ", "reading weights file for tissue"))
   } else if (from == "celltype") {
-    genotypes <- fread(file = genotypes_path, header = T, nThread = 4)
+    genotypes <- fread(file = genotypes_path, header = T, nThread = cores)
     genotypes <- genotypes[-1,-1]
     gc()
     print(paste0("Done with: ", "reading genotypes file for celltype"))
@@ -156,7 +156,8 @@ Go.BP <- function(from, genes_set, correct, cores, scale, method, genotypes_path
   if (genes_set == "targets") {
     # impute tx for all genes
     imputed.tx <- impute.tx(genotypes = genotypes, 
-                            weights = ready.weights%>%filter(gene %in% c("SLC6A3","SLC6A2","HTR1A","CES1A1a")))
+                            weights = ready.weights%>%filter(gene %in% c("SLC6A3","SLC6A2","HTR1A","CES1A1a")), 
+                            threads = cores)
     gc()
     print(paste0("Done with: ", "imputing tx"))
     imputed.tx <- imputed.tx %>% as.data.frame() %>% dplyr::select(any_of(c("SLC6A3","SLC6A2","HTR1A","CES1A1a")))
@@ -168,7 +169,7 @@ Go.BP <- function(from, genes_set, correct, cores, scale, method, genotypes_path
   }else if (genes_set == "all") {
     # impute tx for all genes
     imputed.tx <- impute.tx(genotypes = genotypes, 
-                            weights = ready.weights) %>% as.data.frame()
+                            weights = ready.weights, threads = cores) %>% as.data.frame()
     gc()
     print(paste0("Done with: ", "imputing tx"))
     # imputed.tx <- imputed.tx %>% as.data.frame() 
@@ -194,7 +195,7 @@ Go.BP <- function(from, genes_set, correct, cores, scale, method, genotypes_path
       gene <- colnames(imputed.tx)[i]
       df <- data.frame(geno.pcs[,1:6],exp=imputed.tx[rownames(geno.pcs),i])
       rownames(df) <- rownames(geno.pcs)
-      df$corr <- predict(glm(as.numeric(exp) ~ pc_01 + pc_02 + pc_03 + pc_04 + pc_05, data = df))
+      df$corr <- residuals(glm(as.numeric(exp) ~ pc_01 + pc_02 + pc_03 + pc_04 + pc_05, data = df))
       colnames(df)[8] <- gene
       ret <- df%>%dplyr::select(8)
       return(ret)
@@ -208,13 +209,13 @@ Go.BP <- function(from, genes_set, correct, cores, scale, method, genotypes_path
   print(paste0("Done with: ", "reading mph signature"))
   if (scale == T ) {
     if (method == 1) {
-      m <- predict.response(samples.tx = if (ncol(tx.corrected)>1) {scale(t(tx.corrected))} else {t(tx.corrected)}, 
+      m <- predict.response(samples.tx = if (ncol(tx.corrected)>1) {t(scale(tx.corrected))} else {t(tx.corrected)}, 
                             drug.sig = scale(mph.sig), approach = method, threads = cores, set = genes_set) %>%
         as.data.frame() %>%
         rownames_to_column("IID") %>%
         rename(m = 2)
     }else {
-      m <- predict.response(samples.tx = if (ncol(tx.corrected)>1) {scale(t(tx.corrected))} else {t(tx.corrected)}, 
+      m <- predict.response(samples.tx = if (ncol(tx.corrected)>1) {t(scale(tx.corrected))} else {t(tx.corrected)}, 
                             drug.sig = scale(mph.sig), approach = method, threads = cores, set = genes_set) %>%
         as.data.frame() %>%
         rename(m = 2)
@@ -222,12 +223,12 @@ Go.BP <- function(from, genes_set, correct, cores, scale, method, genotypes_path
     print(paste0("Done with: ", "predicting drug response with scaling option and approach ", method))
   } else if(scale == F){
     if (method == 1) {
-      m <- predict.response(samples.tx = t(tx.corrected), drug.sig = mph.sig, approach = method, threads = cores, set = genes_set) %>%
+      m <- predict.response(samples.tx = t(tx.corrected), drug.sig = scale(mph.sig), approach = method, threads = cores, set = genes_set) %>%
         as.data.frame() %>%
         rownames_to_column("IID") %>%
         rename(m = 2)
     }else {
-      m <- predict.response(samples.tx = t(tx.corrected), drug.sig = mph.sig, approach = method, threads = cores, set = genes_set) %>%
+      m <- predict.response(samples.tx = t(tx.corrected), drug.sig = scale(mph.sig), approach = method, threads = cores, set = genes_set) %>%
         as.data.frame() %>%
         rename(m = 2)
     }
